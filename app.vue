@@ -2,8 +2,8 @@
   <div class="flex h-screen w-screen overflow-hidden">
     <!-- Column 1: Fixed 5% -->
     <div class="bg-gray-800 text-white flex-shrink-0" :style="{ width: '5vw' }">
-      <div class="h-full flex items-center justify-center">
-        <SideNavigationMenu />
+      <div class="h-full flex justify-center">
+        <SideNavigationMenu class="mt-3" />
       </div>
     </div>
 
@@ -12,7 +12,9 @@
       class="bg-gray-100 flex-shrink-0 relative"
       :style="{ width: col2Width + 'vw', overflow: 'hidden' }"
     >
-      <div class="h-full flex items-center justify-center">Col 2</div>
+      <div class="h-full flex justify-center">
+        <SystemExplorer />
+      </div>
       <!-- Dragger for Col 2 (right edge) -->
       <div
         class="absolute top-0 right-0 h-full w-2 cursor-col-resize z-10"
