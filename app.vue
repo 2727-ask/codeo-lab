@@ -2,8 +2,8 @@
   <div class="flex h-screen w-screen overflow-hidden">
     <!-- Column 1: Fixed 5% -->
     <div class="bg-gray-800 text-white flex-shrink-0" :style="{ width: '5vw' }">
-      <div class="h-full flex items-center justify-center">
-        <SideNavigationMenu />
+      <div class="h-full flex justify-center">
+        <SideNavigationMenu class="mt-3" />
       </div>
     </div>
 
@@ -12,7 +12,9 @@
       class="bg-gray-100 flex-shrink-0 relative"
       :style="{ width: col2Width + 'vw', overflow: 'hidden' }"
     >
-      <div class="h-full flex items-center justify-center">Col 2</div>
+      <div class="h-full m-3 overflow-y-scroll">
+        <SystemExplorer />
+      </div>
       <!-- Dragger for Col 2 (right edge) -->
       <div
         class="absolute top-0 right-0 h-full w-2 cursor-col-resize z-10"
@@ -24,8 +26,8 @@
     <div class="bg-white flex-1 relative" :style="{ minWidth: '0' }">
       <!-- Row 1 (base row) -->
       <div class="h-full w-full relative">
-        <div class="h-full flex items-center justify-center bg-blue-50">
-          Row 1 (Base)
+        <div class="h-full w-full bg-blue-50">
+          <TabEditors class="h-full" />
         </div>
         <!-- Row 2 (overlay, resizable in height) -->
         <div
@@ -37,8 +39,8 @@
             class="h-2 w-full cursor-row-resize bg-blue-300 z-30"
             @mousedown="startRow2Resize"
           ></div>
-          <div class="flex-1 flex items-center justify-center">
-            Row 2 (Overlay)
+          <div class="flex-1">
+            <TerminalTabs class="h-full" />
           </div>
         </div>
       </div>
@@ -57,10 +59,18 @@
       <div class="h-full flex items-center justify-center">Col 4</div>
     </div>
   </div>
+
+  
 </template>
+
+<style>
+@import 'xterm/css/xterm.css';
+</style>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import TabEditors from '~/components/tabEditors.vue'
+
 
 const col2Width = ref(20); // in vw
 const col4Width = ref(20); // in vw
@@ -145,3 +155,5 @@ function stopRow2Resize() {
   window.removeEventListener("mouseup", stopRow2Resize);
 }
 </script>
+
+
